@@ -43,6 +43,8 @@ ON UPDATE CASCADE
 
 CREATE TABLE historico(
 id SERIAL NOT NULL,
+medico varchar(20) NOT NULL,
+paciente INTEGER NOT NULL,
 tipo varchar(300) NOT NULL,
 descricao VARCHAR(300) NOT NULL,
 observacao VARCHAR(300) NOT NULL,
@@ -50,73 +52,46 @@ dataDiagnostico DATE,
 status char,
 dataResolucao DATE,
 CONSTRAINT pk_historico PRIMARY KEY(id),
-ON DELETE NO ACTION
-ON UPDATE CASCADE
-);
-
-CREATE TABLE historicopacientemedico (
-medico varchar(20) NOT NULL,
-paciente INTEGER NOT NULL,
-historico INTEGER NOT NULL,
-CONSTRAINT fk_historico_medico FOREIGN KEY(medico) REFERENCES medico(crm)
-ON DELETE NO ACTION
-ON UPDATE CASCADE,
 CONSTRAINT fk_historico_paciente FOREIGN KEY(paciente) REFERENCES paciente(id)
 ON DELETE CASCADE
 ON UPDATE CASCADE,
-CONSTRAINT fk_historico_historico FOREIGN KEY(historico) REFERENCES historico(id)
+CONSTRAINT fk_historico_medico FOREIGN KEY(medico) REFERENCES medico(crm)
 ON DELETE CASCADE
 ON UPDATE CASCADE
 );
+
 
 CREATE TABLE medicamento(
 id SERIAL NOT NULL,
 nome VARCHAR(300) NOT NULL,
+medico varchar(20) NOT NULL,
+paciente INTEGER NOT NULL,
 dataInicio DATE,
 dataFim DATE,
 observacao VARCHAR(300),
-CONSTRAINT pk_medicamento PRIMARY KEY(id)
-);
-
-CREATE TABLE medicamentopacientemedico (
-medico varchar(20) NOT NULL,
-paciente INTEGER NOT NULL,
-medicamento INTEGER NOT NULL,
+CONSTRAINT pk_medicamento PRIMARY KEY(id),
 CONSTRAINT fk_medicamento_medico FOREIGN KEY(medico) REFERENCES medico(crm)
 ON DELETE NO ACTION
 ON UPDATE CASCADE,
 CONSTRAINT fk_medicamento_paciente FOREIGN KEY(paciente) REFERENCES paciente(id)
 ON DELETE CASCADE
-ON UPDATE CASCADE,
-CONSTRAINT fk_medicamento_medicamento FOREIGN KEY(medicamento) REFERENCES medicamento(id)
-ON DELETE CASCADE
 ON UPDATE CASCADE
 );
 
+
 CREATE TABLE procedimento(
 id SERIAL NOT NULL,
+medico varchar(20) NOT NULL,
+paciente INTEGER NOT NULL,
 nome VARCHAR(300),
 descricao VARCHAR(300) NOT NULL,
 observacao VARCHAR(300),
 data DATE,
-CONSTRAINT pk_procedimento PRIMARY KEY(id)
-);
-
-CREATE TABLE procedimentopacientemedico (
-medico varchar(20) NOT NULL,
-paciente INTEGER NOT NULL,
-procedimento INTEGER NOT NULL,
+CONSTRAINT pk_procedimento PRIMARY KEY(id),
 CONSTRAINT fk_procedimento_medico FOREIGN KEY(medico) REFERENCES medico(crm)
 ON DELETE NO ACTION
 ON UPDATE CASCADE,
 CONSTRAINT fk_procedimento_paciente FOREIGN KEY(paciente) REFERENCES paciente(id)
 ON DELETE CASCADE
-ON UPDATE CASCADE,
-CONSTRAINT fk_procedimento_procedimento FOREIGN KEY(procedimento) REFERENCES procedimento(id)
-ON DELETE CASCADE
 ON UPDATE CASCADE
 );
-
-
-
-

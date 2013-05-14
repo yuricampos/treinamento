@@ -50,7 +50,7 @@ public interface IObjectDAO {
      * @param input
      * @throws Exception
      */
-    public ArrayList<Object> listar(Object input) throws Exception;
+    public Object listar() throws Exception;
 
     /**
      * fazer buscas em objetos no banco
@@ -59,5 +59,5 @@ public interface IObjectDAO {
      * @return
      * @throws Exception
      */
-    public ArrayList<Object> buscar(Object input) throws Exception;
+    public Object buscar(Object input) throws Exception;
 }
