@@ -12,6 +12,7 @@ nome VARCHAR(150) NOT NULL,
 cpf VARCHAR(11),
 rg VARCHAR(20),
 foto VARCHAR(150),
+chave VARCHAR(150),
 sexo char NOT NULL,
 grupoSanguineo varchar(3),
 dataNascimento date NOT NULL,
@@ -21,17 +22,6 @@ email varchar(150) NOT NULL,
 CONSTRAINT pk_paciente PRIMARY KEY(id)
 );
 
-CREATE TABLE pacientemedico(
-medico VARCHAR(20) NOT NULL,
-paciente INTEGER NOT NULL,
-status char NOT NULL,
-CONSTRAINT fk_pacientemedico_medico FOREIGN KEY(medico) REFERENCES medico(crm)
-ON DELETE CASCADE 
-ON UPDATE CASCADE,
-CONSTRAINT fk_pacientemedico_paciente FOREIGN KEY(paciente) REFERENCES paciente(id)
-ON DELETE CASCADE
-ON UPDATE CASCADE
-);
 
 CREATE TABLE exame(
 id SERIAL NOT NULL,
