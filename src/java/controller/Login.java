@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Medico;
 
 /**
  *
@@ -41,13 +42,16 @@ public class Login extends HttpServlet {
             String senha = request.getParameter("senha");
             HttpSession httpSession = request.getSession();
             MedicoDAO d = new MedicoDAO();
-            int resultado = d.verificaLogin(usuario, senha);
-            if(resultado == 1){
-                httpSession.setAttribute("usuario", usuario);
-                getServletContext().getRequestDispatcher("/sucesso.jsp").forward(request, response);
-            } else{
+            Medico resultado = (Medico) d.verificaLogin(usuario, senha);
+            if(resultado == null){
                 request.setAttribute("status", "erro");
                 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            } else{
+                
+                httpSession.setAttribute("crm", resultado.getCrm());
+                httpSession.setAttribute("nome", resultado.getNome());
+                httpSession.setAttribute("email", resultado.getEmail());
+                getServletContext().getRequestDispatcher("/sucesso.jsp").forward(request, response);
                 
                 
             }

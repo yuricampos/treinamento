@@ -17,13 +17,11 @@ import model.Medico;
  */
 public class MedicoDAO implements IObjectDAO {
 
-    private final String SQL_LOGIN = "SELECT m.crm FROM medico AS m WHERE m.crm = ? AND m.senha = ?";
-    
-     private PreparedStatement ps;
+    private final String SQL_LOGIN = "SELECT m.crm as m_crm, m.nome as m_nome, m.email as m_email FROM medico AS m WHERE m.crm = ? AND m.senha = ?";
+    private PreparedStatement ps;
     private ResultSet rs;
 
-
-    public int verificaLogin(String usuario, String senha) throws SQLException {
+    public Object verificaLogin(String usuario, String senha) throws SQLException {
         this.ps = Conexao.getInstance().getConexao().prepareStatement(SQL_LOGIN);
         this.ps.setString(1, usuario);
         this.ps.setString(2, senha);
@@ -31,10 +29,18 @@ public class MedicoDAO implements IObjectDAO {
         this.rs.next();
         int size = -1;
         size = rs.getRow();
-        if(size == 0){
-            return 0;
-        } 
-        return 1;
+        if (size == 0) {
+            return null;
+        }
+        return this.criarObjetoTemplate();
+    }
+
+    public Object criarObjetoTemplate() throws SQLException {
+        Medico output = new Medico();
+        output.setNome(this.rs.getString("m_nome"));
+        output.setCrm(this.rs.getString("m_crm"));
+        output.setEmail(this.rs.getString("m_email"));
+        return output;
     }
 
     @Override

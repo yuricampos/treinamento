@@ -40,22 +40,16 @@ ON DELETE NO ACTION
 ON UPDATE CASCADE
 );
 
-CREATE TABLE tipo(
-id SERIAL NOT NULL,
-descricao VARCHAR(200) NOT NULL,
-CONSTRAINT pk_tipo PRIMARY KEY(id)
-);
 
 CREATE TABLE historico(
 id SERIAL NOT NULL,
-tipo integer NOT NULL,
+tipo varchar(300) NOT NULL,
 descricao VARCHAR(300) NOT NULL,
 observacao VARCHAR(300) NOT NULL,
 dataDiagnostico DATE,
 status char,
 dataResolucao DATE,
 CONSTRAINT pk_historico PRIMARY KEY(id),
-CONSTRAINT fk_historico_tipo FOREIGN KEY(tipo) REFERENCES tipo(id)
 ON DELETE NO ACTION
 ON UPDATE CASCADE
 );
