@@ -23,13 +23,13 @@ public class PacienteDAO implements IObjectDAO {
             + "p.login as p_login, p.email as p_email FROM paciente AS p WHERE p.login = ? AND p.senha = ?";
     private final String SQL_INSERT = "INSERT INTO paciente VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?,?);";
     private final String SQL_UPDATE = "UPDATE paciente SET senha = ?, email = ? WHERE id = ?";
-    private final String SQL_UPDATE_KEY = "UPDATE paciente SET chave = ? WHERE id = ?";
     private final String SQL_GET = "SELECT p.id as p_id, p.nome as p_nome, p.cpf as p_cpf, p.rg as"
             + " p_rg, p.foto as p_foto, p.chave as p_chave, p.sexo as p_sexo, p.grupoSanguineo as p_grupoSanguineo, "
             + "p.login as p_login, p.email as p_email FROM paciente AS p WHERE p.id = ?";
     private final String SQL_GET_BY_KEY = "SELECT p.id as p_id, p.nome as p_nome, p.cpf as p_cpf, p.rg as"
             + " p_rg, p.foto as p_foto, p.chave as p_chave, p.sexo as p_sexo, p.grupoSanguineo as p_grupoSanguineo, "
             + "p.login as p_login, p.email as p_email FROM paciente AS p WHERE p.chave = ?";
+    private final String SQLUPDATEKEY = "UPDATE paciente SET chave = ? WHERE id = ?";
     private PreparedStatement ps;
     private ResultSet rs;
 
@@ -48,7 +48,8 @@ public class PacienteDAO implements IObjectDAO {
     }
     
     public void atualizarKey(Object input){
-        
+        Paciente p = (Paciente) input;
+
         
     }
 
@@ -72,6 +73,7 @@ public class PacienteDAO implements IObjectDAO {
         output.setNome(this.rs.getString("p_nome"));
         output.setCpf(this.rs.getString("p_cpf"));
         output.setRg(this.rs.getString("p_rg"));
+        output.setSexo(this.rs.getString(p_sexo));
         output.setFoto(this.rs.getString("p_foto"));
         output.setChave(this.rs.getString("p_rg"));
         return output;
@@ -79,7 +81,14 @@ public class PacienteDAO implements IObjectDAO {
 
     @Override
     public void inserir(Object input) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Paciente p = (Paciente) input;
+        this.ps = Conexao.getInstance().getConexao().prepareStatement(SQL_INSERT);
+        this.ps.setString(1, p.getNome());
+        this.ps.setString(2, p.getCpf());
+        this.ps.setString(3, p.getRg());
+        this.ps.setString(4, p.getFoto());
+        this.ps.setString(1, p.getNome());
+        this.ps.execute();
     }
 
     @Override
