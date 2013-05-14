@@ -1,10 +1,12 @@
 
+import DAO.HistoricoDAO;
 import DAO.MedicoDAO;
 import DAO.PacienteDAO;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import model.Historico;
 import model.Medico;
 import model.Paciente;
 
@@ -35,28 +37,48 @@ public class main {
          * m.setNome("yuri"); m.setCrm("123456"); m.setEmail("b@a.com");
          * m.setSenha("111"); mdao.atualizar(m);
          * System.out.println(m.getEmail());
+         *
+         */
+        /**
+         *
+         * PacienteDAO pdao = new PacienteDAO(); String chave = pdao.gerarKey();
+         * System.out.println(chave); Paciente p = new Paciente(); //
+         * p.setNome("yuri"); //p.setCpf("123456"); //p.setSexo("M");
+         * //p.setDataNascimento(coverteStringData("10/10/2010")); //
+         * p.setLogin("1"); // p.setSenha("12345"); //
+         * p.setEmail("p@p.aaaacom"); // pdao.inserir(p); //p.setId(2);
+         * //pdao.atualizar(p); // p = (Paciente) pdao.verificaLogin("1",
+         * "12345"); //Paciente p1 = new Paciente(); //p1.setId(2);
+         * //p1.setChave("ZRSUBPLUL"); //p = (Paciente) pdao.recuperarKey(p1);
+         * //System.out.println(p.getNome()); Medico m = new Medico();
+         * m.setCrm("1"); m.setNome("fulano"); m.setEmail("fulano@clinica.com");
+         * m.setSenha("1"); mdao.inserir(m);
+         *
+         * Paciente p = new Paciente(); p.setId(2); Medico m = new Medico();
+         * m.setCrm("1");
         *
          */
-        PacienteDAO pdao = new PacienteDAO();
-        String chave = pdao.gerarKey();
-        System.out.println(chave);
+        Historico h = new Historico();
+        //  h.setMedico(m);
+        //  h.setPaciente(p);
+        //  h.setTipo("bla bla");
+        //  h.setDescricao("asd2");
+        //  h.setObservacao("3");
+        h.setId(1);
         Paciente p = new Paciente();
-        //  p.setNome("yuri");
-        //p.setCpf("123456");
-        //p.setSexo("M");
-        //p.setDataNascimento(coverteStringData("10/10/2010"));
-        // p.setLogin("1");
-        // p.setSenha("12345");
-        // p.setEmail("p@p.aaaacom");
-        //  pdao.inserir(p);
-        //p.setId(2);
-        //pdao.atualizar(p);
-        // p = (Paciente) pdao.verificaLogin("1", "12345");
-        Paciente p1 = new Paciente();
-        p1.setId(2);
-        p1.setChave("ZRSUBPLUL");
-        p = (Paciente) pdao.recuperarKey(p1);
-        System.out.println(p.getNome());
+        p.setId(2);
+        h.setPaciente(p);
+        HistoricoDAO hdao = new HistoricoDAO();
+        Historico h2 = new Historico();
+        //  h2  = (Historico) hdao.recuperar(h);
+        //System.out.println(h2.getDescricao());
+        ArrayList<Object> historicos = new ArrayList<Object>();
+        historicos = (ArrayList<Object>) hdao.getAll(h);
+        for (int i = 0; i < historicos.size(); i++) {
+            h = (Historico) historicos.get(i);
+            System.out.println(h.getDescricao());
+        }
+
 
     }
 
