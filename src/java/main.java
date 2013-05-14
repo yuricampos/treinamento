@@ -1,5 +1,6 @@
 
 import DAO.MedicoDAO;
+import DAO.PacienteDAO;
 import java.util.ArrayList;
 import model.Medico;
 
@@ -17,6 +18,9 @@ public class main {
         MedicoDAO mdao = new MedicoDAO();
     //    int a = mdao.verificaLogin("123", "123");
      //   System.out.println(a);
+        /**
+         * 
+         
         Medico m = new Medico();
         m.setNome("yuri");
         m.setCrm("123456");
@@ -37,5 +41,10 @@ public class main {
         m.setSenha("111");
         mdao.atualizar(m);
         System.out.println(m.getEmail());
+        * */
+        
+        PacienteDAO pdao = new PacienteDAO();
+        String chave = pdao.gerarKey();
+        System.out.println(chave);
     }
 }
