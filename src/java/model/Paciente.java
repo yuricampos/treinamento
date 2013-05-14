@@ -17,7 +17,7 @@ public class Paciente {
     private String rg;
     private String foto;
     private String chave;
-    private char sexo;
+    private String sexo;
     private String grupoSanguineo;
     private Date dataNascimento;
     private String login;
@@ -111,14 +111,14 @@ public class Paciente {
     /**
      * @return the sexo
      */
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
     /**
      * @param sexo the sexo to set
      */
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 

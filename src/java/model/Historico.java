@@ -19,7 +19,7 @@ public class Historico {
     private String descricao;
     private String observacao;
     private Date dataDiagnostico;
-    private char status;
+    private String status;
     private Date dataResolucao;
 
     /**
@@ -123,14 +123,14 @@ public class Historico {
     /**
      * @return the status
      */
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

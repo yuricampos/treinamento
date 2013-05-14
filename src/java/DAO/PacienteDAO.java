@@ -73,7 +73,9 @@ public class PacienteDAO implements IObjectDAO {
         output.setNome(this.rs.getString("p_nome"));
         output.setCpf(this.rs.getString("p_cpf"));
         output.setRg(this.rs.getString("p_rg"));
-        output.setSexo(this.rs.getString(p_sexo));
+        output.setSexo(this.rs.getString("p_sexo"));
+        output.setChave(this.rs.getString("p_chave"));
+        
         output.setFoto(this.rs.getString("p_foto"));
         output.setChave(this.rs.getString("p_rg"));
         return output;
