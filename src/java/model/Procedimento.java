@@ -12,7 +12,7 @@ import java.sql.Date;
  */
 public class Procedimento {
     
-    private String id;
+    private int id;
     private Medico medico;
     private Paciente paciente;
     private String nome;
@@ -23,14 +23,14 @@ public class Procedimento {
     /**
      * @return the id
      */
-    public String getId() {
+    public int getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

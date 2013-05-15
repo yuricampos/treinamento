@@ -1,5 +1,6 @@
 
 import DAO.HistoricoDAO;
+import DAO.MedicamentoDAO;
 import DAO.MedicoDAO;
 import DAO.PacienteDAO;
 import java.sql.Date;
@@ -7,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import model.Historico;
+import model.Medicamento;
 import model.Medico;
 import model.Paciente;
 
@@ -21,7 +23,7 @@ import model.Paciente;
 public class main {
 
     public static void main(String[] args) throws Exception {
-        MedicoDAO mdao = new MedicoDAO();
+       // MedicoDAO mdao = new MedicoDAO();
         //    int a = mdao.verificaLogin("123", "123");
         //   System.out.println(a);
         /**
@@ -38,8 +40,7 @@ public class main {
          * m.setSenha("111"); mdao.atualizar(m);
          * System.out.println(m.getEmail());
          *
-         */
-        /**
+       
          *
          * PacienteDAO pdao = new PacienteDAO(); String chave = pdao.gerarKey();
          * System.out.println(chave); Paciente p = new Paciente(); //
@@ -57,7 +58,7 @@ public class main {
          * Paciente p = new Paciente(); p.setId(2); Medico m = new Medico();
          * m.setCrm("1");
         *
-         */
+         
         Historico h = new Historico();
         //  h.setMedico(m);
         //  h.setPaciente(p);
@@ -78,7 +79,34 @@ public class main {
             h = (Historico) historicos.get(i);
             System.out.println(h.getDescricao());
         }
-
+        * */
+        /**
+         * 
+         
+        Medicamento m = new Medicamento();
+        MedicamentoDAO mdao = new MedicamentoDAO();
+        Medico me = new Medico();
+        Paciente p = new Paciente();
+        m.setId(1);
+        me.setCrm("1");
+        p.setId(2);
+        m.setDataFim(null);
+        m.setDataInicio(null);
+        m.setNome("1asdasdjk");
+        m.setMedico(me);
+        m.setPaciente(p);
+        mdao.atualizar(m);
+        
+        Medicamento m = new Medicamento();
+        MedicamentoDAO mdao = new MedicamentoDAO();
+        m.setId(1);
+        Paciente p = new Paciente();
+        p.setId(2);
+        m.setPaciente(p);
+        Medicamento m1 = new Medicamento();
+        m1 = (Medicamento) mdao.getAll(m);
+        System.out.println(m1.getNome());
+        * */
 
     }
 
