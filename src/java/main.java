@@ -80,9 +80,9 @@ public class main {
             System.out.println(h.getDescricao());
         }
         * */
-        /**
+        
+          /**
          * 
-         
         Medicamento m = new Medicamento();
         MedicamentoDAO mdao = new MedicamentoDAO();
         Medico me = new Medico();
@@ -96,7 +96,7 @@ public class main {
         m.setMedico(me);
         m.setPaciente(p);
         mdao.atualizar(m);
-        
+        * */
         Medicamento m = new Medicamento();
         MedicamentoDAO mdao = new MedicamentoDAO();
         m.setId(1);
@@ -104,9 +104,9 @@ public class main {
         p.setId(2);
         m.setPaciente(p);
         Medicamento m1 = new Medicamento();
-        m1 = (Medicamento) mdao.getAll(m);
+        m1 = (Medicamento) mdao.recuperar(m);
         System.out.println(m1.getNome());
-        * */
+       
 
     }
 

@@ -22,11 +22,11 @@ public class MedicamentoDAO implements IObjectDAO {
     private final String SQL_INSERT = "INSERT INTO medicamento VALUES(DEFAULT,?,?,?,?,?,?);";
     private final String SQL_UPDATE = "UPDATE medicamento SET nome = ?, dataInicio = ?, dataFim = ?, "
             + "observacao = ? WHERE id = ?";
-    private final String SQL_GETALL = "SELECT m.id as m_id, m.nome as m_nome, m.medico as m_medico,"
-            + "m.paciente as m_paciente, m.dataInicio as m_dataInicio, m.dataFim as m_dataFim, m.observacao as m_observacao"
+    private final String SQL_GETALL = "SELECT m.id as m_id, m.nome as m_nome, m.medico as m_medico, "
+            + "m.paciente as m_paciente, m.dataInicio as m_dataInicio, m.dataFim as m_dataFim, m.observacao as m_observacao "
             + "FROM medicamento AS m WHERE m.paciente = ?";
-    private final String SQL_GET = "SELECT m.id as m_id, m.nome as m_nome, m.medico as m_medico,"
-            + "m.paciente as m_paciente, m.dataInicio as m_dataInicio, m.dataFim as m_dataFim, m.observacao as m_observacao"
+    private final String SQL_GET = "SELECT m.id as m_id, m.nome as m_nome, m.medico as m_medico, "
+            + "m.paciente as m_paciente, m.dataInicio as m_dataInicio, m.dataFim as m_dataFim, m.observacao as m_observacao "
             + "FROM medicamento AS m WHERE m.id = ?";
     private PreparedStatement ps;
     private ResultSet rs;

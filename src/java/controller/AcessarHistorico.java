@@ -32,7 +32,7 @@ public class AcessarHistorico extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String usuario = (String) request.getSession(false).getAttribute("usuario"); 
+            
         } finally {            
             out.close();
         }

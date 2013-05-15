@@ -21,11 +21,11 @@ public class ProcedimentoDAO implements IObjectDAO {
     private final String SQL_INSERT = "INSERT INTO procedimento VALUES(DEFAULT,?,?,?,?,?,?);";
     private final String SQL_UPDATE = "UPDATE procedimento SET nome = ?, descricao = ?, observacao = ?, "
             + "data = ? WHERE id = ?";
-    private final String SQL_GETALL = "SELECT p.id as p_id, p.medico as p_medico, p.paciente as p_paciente,"
-            + "p.nome as p_nome, p.descricao as p_descricao, p.observacao as p_observacao, p.data as p_data"
+    private final String SQL_GETALL = "SELECT p.id as p_id, p.medico as p_medico, p.paciente as p_paciente, "
+            + "p.nome as p_nome, p.descricao as p_descricao, p.observacao as p_observacao, p.data as p_data "
             + " FROM procedimento AS p WHERE p.paciente = ?";
-    private final String SQL_GET = "SELECT p.id as p_id, p.medico as p_medico, p.paciente as p_paciente,"
-            + "p.nome as p_nome, p.descricao as p_descricao, p.observacao as p_observacao, p.data as p_data"
+    private final String SQL_GET = "SELECT p.id as p_id, p.medico as p_medico, p.paciente as p_paciente, "
+            + "p.nome as p_nome, p.descricao as p_descricao, p.observacao as p_observacao, p.data as p_data "
             + " FROM procedimento AS p WHERE p.id = ?";
     private PreparedStatement ps;
     private ResultSet rs;

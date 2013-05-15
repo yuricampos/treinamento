@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import model.Historico;
 import model.Medico;
 import model.Paciente;
@@ -50,8 +51,9 @@ public class HistoricoDAO implements IObjectDAO {
         return output;
     }
 
-    public ArrayList<Object> buscarVariosObjetosTemplate() throws SQLException, Exception {
-        ArrayList<Object> output = new ArrayList<>();
+    public List<Object> buscarVariosObjetosTemplate() throws SQLException, Exception {
+        List<Object> output = null;
+        output.clear();
         while (this.rs.next()) {
             output.add((Historico) this.criarObjetoTemplate());
         }
