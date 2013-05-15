@@ -5,6 +5,7 @@
 package controller;
 
 import DAO.MedicoDAO;
+import DAO.PacienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -16,12 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Medico;
+import model.Paciente;
 
 /**
  *
  * @author yuricampos
  */
-public class Login extends HttpServlet {
+public class LoginPaciente extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -41,21 +43,27 @@ public class Login extends HttpServlet {
             String usuario = request.getParameter("usuario");
             String senha = request.getParameter("senha");
             HttpSession httpSession = request.getSession();
-            MedicoDAO d = new MedicoDAO();
-            Medico resultado = (Medico) d.verificaLogin(usuario, senha);
-            if(resultado == null){
+            PacienteDAO d = new PacienteDAO();
+            Paciente resultado = (Paciente) d.verificaLogin(usuario, senha);
+            if (resultado == null) {
                 request.setAttribute("status", "erro");
                 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-            } else{
-                
-                httpSession.setAttribute("crm", resultado.getCrm());
+            } else {
                 httpSession.setAttribute("nome", resultado.getNome());
-                httpSession.setAttribute("email", resultado.getEmail());
-                getServletContext().getRequestDispatcher("/homemedico.jsp").forward(request, response);
-                
-                
+                httpSession.setAttribute("chave", resultado.getChave());
+                httpSession.setAttribute("cpf",resultado.getCpf());
+                httpSession.setAttribute("dataNascimento",resultado.getDataNascimento());
+                httpSession.setAttribute("email",resultado.getEmail());
+                httpSession.setAttribute("grupoSanguineo",resultado.getGrupoSanguineo());
+                httpSession.setAttribute("id",resultado.getId());
+                httpSession.setAttribute("login",resultado.getLogin());
+                httpSession.setAttribute("rg",resultado.getRg());
+                httpSession.setAttribute("sexo",resultado.getSexo());
+                getServletContext().getRequestDispatcher("/homepaciente.jsp").forward(request, response);
+
+
             }
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -76,7 +84,7 @@ public class Login extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -95,7 +103,7 @@ public class Login extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

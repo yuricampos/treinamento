@@ -137,6 +137,11 @@ public class PacienteDAO implements IObjectDAO {
         this.ps.setInt(2, p.getId());
         this.rs = this.ps.executeQuery();
         rs.next();
+        int size = -1;
+        size = rs.getRow();
+        if (size == 0) {
+            return null;
+        }
         return this.criarObjetoTemplate();
     }
 

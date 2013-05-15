@@ -4,24 +4,18 @@
  */
 package controller;
 
-import DAO.MedicoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Medico;
 
 /**
  *
  * @author yuricampos
  */
-public class Login extends HttpServlet {
+public class CadastroMedicamento extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -34,27 +28,11 @@ public class Login extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String usuario = request.getParameter("usuario");
-            String senha = request.getParameter("senha");
-            HttpSession httpSession = request.getSession();
-            MedicoDAO d = new MedicoDAO();
-            Medico resultado = (Medico) d.verificaLogin(usuario, senha);
-            if(resultado == null){
-                request.setAttribute("status", "erro");
-                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-            } else{
-                
-                httpSession.setAttribute("crm", resultado.getCrm());
-                httpSession.setAttribute("nome", resultado.getNome());
-                httpSession.setAttribute("email", resultado.getEmail());
-                getServletContext().getRequestDispatcher("/homemedico.jsp").forward(request, response);
-                
-                
-            }
+
         } finally {            
             out.close();
         }
@@ -73,11 +51,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -92,11 +66,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
