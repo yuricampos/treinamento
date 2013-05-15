@@ -13,7 +13,7 @@ import model.Medico;
 import model.Procedimento;
 
 /**
- *
+ * a
  * @author yuricampos
  */
 public class ProcedimentoDAO implements IObjectDAO {
